@@ -8,12 +8,12 @@ import (
 )
 
 type dog struct {
-	ID		string `json:"id"`
-	Breed	string `json:"breed"`
-	Image	string `json:"image"`
-	Options	[]string `json:"options"`
-	Answer	string `json:"answer"`
-
+	ID		string 		`json:"id"`
+	Breed	string 		`json:"breed"`
+	Image	string 		`json:"image"`
+	Options	[]string	`json:"options"`
+	Answer	string 		`json:"answer"`
+	Score	int			`json:"score"`	
 }
 
 var dogs = []dog {
@@ -88,6 +88,31 @@ func createDog(c *gin.Context) {
 	c.IndentedJSON(http.StatusCreated, newDog)
 }
 
+func findDogByID(id string) *dog {
+	for i, d := range dogs {
+		if d.ID == id {
+			return &dogs[i]
+		}
+	}
+	return nil
+}
+
+func calculateScore(c *gin.Context) {
+	var userAnswers map[string]string
+	if err := c.BindJSON(&userAnswers); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "Invalid request body"})
+		return
+	}
+	score := 0
+	for dogID, selectedOption := range userAnswers {
+		dog := findDogByID(dogID)
+		if dog != nil && dog.Answer == selectedOption {
+			score++
+		}
+	}
+	c.JSON(http.StatusOK, gin.H{"score": score})
+}
+
 func main() {
 	router := gin.Default()
 	// Enable CORS
@@ -97,6 +122,7 @@ func main() {
 
 	router.GET("/dogs", getDogs)
 	router.GET("/dogs/:id", dogById)
+	router.POST("/score", calculateScore)
 	router.POST("/dogs", createDog)
 	router.Run("localhost:8080")
 }
