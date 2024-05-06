@@ -8,12 +8,13 @@ import (
 )
 
 type dog struct {
-	ID		string 		`json:"id"`
-	Breed	string 		`json:"breed"`
-	Image	string 		`json:"image"`
-	Options	[]string	`json:"options"`
-	Answer	string 		`json:"answer"`
-	Score	int			`json:"score"`	
+	ID			string 		`json:"id"`
+	Breed		string 		`json:"breed"`
+	Image		string 		`json:"image"`
+	Options		[]string	`json:"options"`
+	Answer		string 		`json:"answer"`
+	Score		int			`json:"score"`
+	Favorites	bool		`json:"favorites"`
 }
 
 var dogs = []dog {
@@ -23,6 +24,7 @@ var dogs = []dog {
 		Image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZp3ggA0Bp1H2l2VQPWs0m9sZ6kfn2h87DRg&s",
 		Options: []string{"Boston Terrier", "Pug", "Collie", "Beagle"},
 		Answer: "Beagle",
+		Favorites: false,
 	},
 	{
 		ID: "2", 
@@ -30,6 +32,7 @@ var dogs = []dog {
 		Image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU2hATbC9ewdkgKzxs34lClrS8wI2EVZKgqQ&s",
 		Options: []string{"Brittany Spaniel", "Basset Hound", "Jack Russell Terrier", "Beagle"},
 		Answer: "Brittany Spaniel",
+		Favorites: false,
 	},
 	{
 		ID: "3",
@@ -37,6 +40,7 @@ var dogs = []dog {
 		Image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2Q5i3a-0UNhpM4XtSHHXcN1MlOnomKEOjEA&s",
 		Options: []string{"American Pitbull", "Doberman Pinscher", "Greyhound", "Mastiff"},
 		Answer: "Doberman Pinscher",
+		Favorites: false,
 	},
 	{
 		ID: "4",
@@ -44,6 +48,7 @@ var dogs = []dog {
 		Image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDk7EXLnJ9j-_aOLe9hmypSESO65P1ZMh1XQ&s",
 		Options: []string{"Norwegian Elkhound", "German Shepherd", "Tibetan Mastiff", "Siberian Husky"},
 		Answer: "Norwegian Elkhound",
+		Favorites: false,
 	},
 	{
 		ID: "5",
@@ -51,6 +56,7 @@ var dogs = []dog {
 		Image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoEiKpVTXDz2K1qTwIvbQOmiPV1AwuhFV9rw&s",
 		Options: []string{"Smooth Fox Terrier", "Shih Tzu", "Basenji", "Chihuahua"},
 		Answer: "Basenji",
+		Favorites: false,
 	},
 }
 
