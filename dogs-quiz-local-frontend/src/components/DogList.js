@@ -54,6 +54,8 @@ function DogList() {
     <div className="flex">
       <div className="w-1/2">
         <h1 className='text-2xl font-bold m-4'>Dogs Quiz</h1>
+        <h3 className='m-4'>Choose the dog breed based off the picture: </h3>
+
         <ul>
           {dogs && dogs.map((dog, index) => (
             <li key={`${dog.id}-${index}`}>
@@ -93,6 +95,9 @@ function DogList() {
   
       <div className="w-1/2">
         <h2 className='text-2xl font-bold m-4'>Favorites</h2>
+        {favorites.length === 0 && !quizSubmitted && (
+          <p className="m-4">Add your favorite dog breeds after taking the quiz</p>
+        )}
         <ul>
           {favorites.map(dog => (
           <li key={dog.id} className="flex items-center space-x-4 p-2">
