@@ -6,7 +6,7 @@ function DogQuiz({ dog, handleAnswer, userAnswers }) {
       <img 
         src={dog.image} 
         alt={dog.breed} 
-        className='m-4 rounded-lg w-40 h-auto object-cover' 
+        className='m-4 rounded-lg w-32 h-32 object-cover' 
       />
       <ul>
         {dog.options.map(option => (
