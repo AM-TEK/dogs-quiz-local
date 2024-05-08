@@ -1,5 +1,9 @@
 
 import React, { useState, useEffect } from 'react';
+import DogQuiz from './DogQuiz';
+import Favorites from './Favorites';
+import SubmitButton from './SubmitButton';
+import FavoriteButton from './FavoriteButton';
 import axios from 'axios';
 
 function DogList() {
@@ -55,58 +59,21 @@ function DogList() {
       <div className="w-1/2">
         <h1 className='text-2xl font-bold m-4'>Dogs Quiz</h1>
         <h3 className='m-4'>Choose the dog breed based off the picture: </h3>
-
         <ul>
           {dogs && dogs.map((dog, index) => (
             <li key={`${dog.id}-${index}`}>
-              <img src={dog.image} alt={dog.breed} className='m-4 rounded-lg' />
+              <DogQuiz dog={dog} handleAnswer={handleAnswer} userAnswers={userAnswers} />
               {quizSubmitted && (
-                <button
-                  onClick={() => addToFavorites(dog)}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 m-4 rounded-md"
-                >
-                  Add to Favorites
-                </button>
+                <FavoriteButton onClick={() => addToFavorites(dog)}/>
               )}
-              <ul>
-                {dog.options.map(option => (
-                  <li key={option}>
-                    <button 
-                      onClick={() => handleAnswer(dog.id, option)}
-                      className={`border mx-4 my-2 p-2 rounded-md ${userAnswers[dog.id] === option ? 'border-blue-500' : 'border-gray-300'}`}
-                    >
-                      {option}
-                    </button>
-                  </li>
-                ))}
-              </ul>
               <hr />
             </li>
           ))}
         </ul>
-        <button 
-          onClick={handleSubmit}
-          className='bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 m-4 rounded-md'
-          >
-          Submit Answers
-        </button>
+        <SubmitButton onClick={handleSubmit}/>
         {score !== null && <p className='m-4'>Score: {(score / dogs.length * 100).toFixed(2)}%</p>}
       </div>
-  
-      <div className="w-1/2">
-        <h2 className='text-2xl font-bold m-4'>Favorites</h2>
-        {favorites.length === 0 && !quizSubmitted && (
-          <p className="m-4">Add your favorite dog breeds after taking the quiz</p>
-        )}
-        <ul>
-          {favorites.map(dog => (
-          <li key={dog.id} className="flex items-center space-x-4 p-2">
-            <img src={dog.image} alt={dog.breed} className='rounded-lg w-32 h-32' />
-            <span className="text-lg">{dog.breed}</span>
-          </li>
-          ))}
-        </ul>
-      </div>
+      <Favorites favorites={favorites} quizSubmitted={quizSubmitted} />
     </div>
   );
 }

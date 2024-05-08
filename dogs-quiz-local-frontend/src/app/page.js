@@ -1,10 +1,11 @@
 "use client";
 import DogList from "@/components/DogList";
+import Header from "@/components/Header";
 
 export default function Home() {
   return (
     <div>
-      <h1 className="mb-10 text-3xl font-bold text-center">Pet Dogs</h1>
+      <Header />
       <DogList />
     </div>
   );
