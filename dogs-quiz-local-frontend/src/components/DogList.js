@@ -55,14 +55,18 @@ function DogList() {
   };
 
   return (
-    <div className="flex">
-      <div className="w-1/2">
-        <h1 className='text-2xl font-bold m-4'>Dogs Quiz</h1>
+    <div className="flex divide-x-4 bg-sky-100">
+      <section className="w-1/2">
+        <h2 className='text-xl m-4'>Dogs Quiz</h2>
         <h3 className='m-4'>Choose the dog breed based off the picture: </h3>
-        <ul>
+        <ul >
           {dogs && dogs.map((dog, index) => (
             <li key={`${dog.id}-${index}`}>
-              <DogQuiz dog={dog} handleAnswer={handleAnswer} userAnswers={userAnswers} />
+              <DogQuiz 
+                dog={dog} 
+                handleAnswer={handleAnswer} 
+                userAnswers={userAnswers} 
+              />
               {quizSubmitted && (
                 <FavoriteButton onClick={() => addToFavorites(dog)}/>
               )}
@@ -70,10 +74,14 @@ function DogList() {
             </li>
           ))}
         </ul>
-        <SubmitButton onClick={handleSubmit}/>
-        {score !== null && <p className='m-4'>Score: {(score / dogs.length * 100).toFixed(2)}%</p>}
-      </div>
-      <Favorites favorites={favorites} quizSubmitted={quizSubmitted} />
+        <div className="flex items-center">
+          <SubmitButton onClick={handleSubmit}/>
+          {score !== null && <p className='m-4'>Score: {(score / dogs.length * 100).toFixed(2)}%</p>}
+        </div>
+      </section>
+      <section className="w-1/2">
+        <Favorites favorites={favorites} quizSubmitted={quizSubmitted} />
+      </section>
     </div>
   );
 }
