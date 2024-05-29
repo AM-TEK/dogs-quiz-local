@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning={true}>
       <head>
         <Script
-          src={`https://maps.googleapis.com/maps/api/js?key=AIzaSyBJhR1FzW0LuUThDYpfKXw-wOFr04Ag090&loading=async&callback=initMap&libraries=places,marker`}
+          src={`https://maps.googleapis.com/maps/api/js?key=&loading=async&callback=initMap&libraries=places,marker`}
           strategy="afterInteractive"
           async
           defer
