@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"net/http"
-	"os"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -137,17 +136,12 @@ func main() {
 	router := gin.Default()
 	// Enable CORS for the frontend to access the backend
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"https://pet-dogs-8e351dc46650.herokuapp.com"}
+	config.AllowOrigins = []string{"http://localhost:3000"}
 	router.Use(cors.New(config))
 
 	router.GET("/dogs", getDogs)
 	router.GET("/dogs/:id", dogById)
 	router.POST("/score", calculateScore)
 	router.POST("/dogs")
-	// router.Run("localhost:8081")
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-	}
-	router.Run(":" + port)
+	router.Run("localhost:8080")
 }
