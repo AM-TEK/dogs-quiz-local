@@ -137,7 +137,7 @@ func main() {
 	router := gin.Default()
 	// Enable CORS for the frontend to access the backend
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost:3000", "https://ancient-bastion-03823-2e5724b88bd5.herokuapp.com"}
+	config.AllowOrigins = []string{"https://pet-dogs-8e351dc46650.herokuapp.com/"}
 	router.Use(cors.New(config))
 
 	router.GET("/dogs", getDogs)
