@@ -3,6 +3,7 @@ import DogQuiz from './DogQuiz';
 import Favorites from './Favorites';
 import SubmitButton from './SubmitButton';
 import FavoriteButton from './FavoriteButton';
+import dogsData from '../../lib/data';
 import axios from 'axios';
 
 function DogList() {
@@ -14,8 +15,7 @@ function DogList() {
 
   //Fetch list of dogs from backend API with Axios GET request
   useEffect(() => {
-    // axios.get('http://localhost:8081/dogs')
-    axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/dogs`)
+    axios.get('http://localhost:8081/dogs')
       .then(response => {
         setDogs(response.data);
       })
@@ -32,8 +32,7 @@ function DogList() {
   };
   //Send a POST request to the '/score' endpoint with userAnswers data, use the response to update the score state and update quizSubmitted to true
   const handleSubmit = () => {
-    // axios.post('http://localhost:8081/score', userAnswers)
-    axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/score`, userAnswers)
+    axios.post('http://localhost:8081/score', userAnswers)
       .then(response => {
           setScore(response.data.score);
           setQuizSubmitted(true);
@@ -44,8 +43,7 @@ function DogList() {
   };
   //Send a POST request to the '/dogs' endpoint with the updated dog object (favorites: true)
   const addToFavorites = (dog) => {
-    // axios.post('http://localhost:8081/dogs', { ...dog, favorites: true })
-    axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/dogs`, { ...dog, favorites: true })
+    axios.post('http://localhost:8081/dogs', { ...dog, favorites: true })
       .then(response => {
           if (!favorites.find(favorite => favorite.id === dog.id)) {
               setFavorites([...favorites, dog]);
